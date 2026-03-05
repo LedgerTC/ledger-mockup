@@ -109,7 +109,6 @@
 }
 .hero-content {
   max-width: 1200px; margin: 0 auto; width: 100%;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
 }
 .hero-text h1 {
   font-family: 'Plus Jakarta Sans', sans-serif; font-size: 3.8rem; font-weight: 800;
@@ -119,14 +118,13 @@
 .hero-text p { font-size: 1.15rem; color: var(--text-secondary); max-width: 520px; margin-bottom: 2rem; line-height: 1.7; }
 .hero-badges { display: grid; grid-template-columns: repeat(4, auto); gap: 1rem; margin-bottom: 2.5rem; justify-content: start; }
 .hero-badge {
-  display: inline-flex; align-items: center; gap: 0.5rem;
+  display: inline-flex; align-items: center; gap: 0.5rem; white-space: nowrap;
   background: rgba(196,154,60,0.08); border: 1px solid rgba(196,154,60,0.18);
-  padding: 0.5rem 1rem; border-radius: 100px; font-size: 0.82rem; font-weight: 600;
+  padding: 0.5rem 1.25rem; border-radius: 100px; font-size: 0.82rem; font-weight: 600;
   color: var(--gold-dark); letter-spacing: 0.02em;
 }
 .hero-badge svg { width: 14px; height: 14px; fill: var(--gold); }
 .hero-buttons { display: flex; gap: 1rem; }
-.hero-visual { display: flex; justify-content: center; align-items: center; }
 .products { background: var(--cream); }
 .products-header { text-align: center; margin-bottom: 4rem; }
 .products-header .section-subtitle { margin: 0 auto; }
@@ -161,10 +159,7 @@
 .apply-header { text-align: center; margin-bottom: 3rem; }
 .apply-header .section-subtitle { margin: 0 auto; }
 .hero-text { animation: fade-up 0.8s ease-out; }
-.hero-visual { animation: fade-up 0.8s ease-out 0.2s both; }
 @media (max-width: 1024px) {
-  .hero-content { grid-template-columns: 1fr; }
-  .hero-visual { display: none; }
   .hero-text h1 { font-size: 2.8rem; }
   .hero-badges { grid-template-columns: repeat(2, auto); }
   .products-grid { grid-template-columns: repeat(2, 1fr); }
@@ -229,9 +224,6 @@
         <a href="#products" class="btn-secondary">View Products</a>
       </div>
     </div>
-    <div class="hero-visual">
-      <img src="hero-graphic.svg" alt="" style="width: 100%; max-width: 500px; opacity: 0.9; filter: brightness(0.5) sepia(1) hue-rotate(-30deg) saturate(10);">
-    </div>
   </div>
 </section>
 <section class="products" id="products">
@@ -291,20 +283,22 @@
 
 <!-- STATS BANNER -->
 <section class="stats" id="stats-banner">
-  <div class="container" style="text-align: center;">
-    <div class="section-label" style="color: var(--gold-light);">Capital that Keeps Up.</div>
-    <div class="stats-grid">
-      <div class="stat">
-        <div class="stat-number" data-target="70" data-suffix="+">0</div>
-        <div class="stat-label">Collective Years Experience</div>
-      </div>
-      <div class="stat">
-        <div class="stat-number" data-prefix="$" data-target="1.4" data-suffix="B" data-decimals="1">0</div>
-        <div class="stat-label">in Closed Transactions</div>
-      </div>
-      <div class="stat">
-        <div class="stat-number" data-prefix="$" data-target="20" data-suffix="B">0</div>
-        <div class="stat-label">in Sourced Investments</div>
+  <div class="container">
+    <div class="stats-row">
+      <div class="stats-heading">Capital that Keeps Up.</div>
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-number" data-target="70" data-suffix="+">0</div>
+          <div class="stat-label">Collective Years Experience</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number" data-prefix="$" data-target="1.4" data-suffix="B" data-decimals="1">0</div>
+          <div class="stat-label">in Closed Transactions</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number" data-prefix="$" data-target="20" data-suffix="B">0</div>
+          <div class="stat-label">in Sourced Investments</div>
+        </div>
       </div>
     </div>
   </div>
