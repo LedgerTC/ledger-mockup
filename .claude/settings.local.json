@@ -6,7 +6,9 @@
       "Bash(git config user.email)",
       "Bash(git config user.name)",
       "Bash(git add -A)",
-      "Bash(git push)"
+      "Bash(git push)",
+      "Bash(git add team.html get-in-touch.html)",
+      "Bash(git add index.html style.css team.html thank-you.html)"
     ]
   }
 }
