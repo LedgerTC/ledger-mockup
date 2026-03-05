@@ -87,6 +87,11 @@
   .team-grid-6 { grid-template-columns: repeat(3, 1fr); }
 }
 @media (max-width: 768px) {
+  .team-grid {
+    width: 100%; max-width: 100%;
+    padding: 0 1rem; box-sizing: border-box;
+    overflow-x: hidden; justify-content: center;
+  }
   .team-grid-5, .team-grid-6 { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 480px) {
