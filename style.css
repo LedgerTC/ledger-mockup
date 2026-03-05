@@ -265,6 +265,9 @@ section { padding: clamp(4rem, 5vw, 7rem) clamp(1.5rem, 3vw, 4rem); }
   .content-grid { grid-template-columns: 1fr; gap: 2rem; }
   .content-grid.reverse { direction: ltr; }
 }
+@media (max-width: 768px) {
+  .broker-why-grid { grid-template-columns: 1fr !important; }
+}
 @media (max-width: 640px) {
   .stats-row { flex-direction: column; text-align: center; gap: 2rem; }
   .stats-heading { max-width: none; }
@@ -322,10 +325,25 @@ section { padding: clamp(4rem, 5vw, 7rem) clamp(1.5rem, 3vw, 4rem); }
 }
 
 /* ─── LOAN DETAIL BOXES ─── */
+/* Side-by-side layout for program details + FAQ */
+.faq-two-col {
+  display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 3vw, 3.5rem);
+  max-width: 1200px; margin: 0 auto;
+}
+.faq-two-col .faq-col-left .section-label,
+.faq-two-col .faq-col-right .section-label { text-align: left; }
+.faq-two-col .faq-col-left h2,
+.faq-two-col .faq-col-right h2 { text-align: left; }
+.faq-two-col .faq-list { max-width: none; }
+@media (max-width: 1024px) {
+  .faq-two-col { grid-template-columns: 1fr; }
+}
+
 .loan-details-grid {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1rem; max-width: 800px; margin: 0 auto 2rem;
 }
+.faq-two-col .loan-details-grid { max-width: none; margin: 0 0 1rem; }
 .loan-detail-box {
   background: var(--white); border: 1px solid var(--gray-100); border-radius: 12px;
   padding: 1.25rem 1.5rem; text-align: center;
