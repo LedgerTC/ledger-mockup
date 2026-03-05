@@ -95,7 +95,8 @@
 </script>
 <style>
 .hero {
-  min-height: 100vh; display: flex; align-items: center; padding: 8rem 3rem 4rem;
+  min-height: 100vh; display: flex; align-items: center;
+  padding: clamp(6rem, 8vw, 10rem) clamp(1.5rem, 3vw, 4rem) clamp(3rem, 4vw, 5rem);
   position: relative; overflow: hidden; background: var(--cream);
 }
 .hero::before {
@@ -108,59 +109,58 @@
   background: linear-gradient(90deg, transparent, var(--gray-100), transparent);
 }
 .hero-content {
-  max-width: 1200px; margin: 0 auto; width: 100%;
+  max-width: 1400px; margin: 0 auto; width: 100%;
 }
 .hero-text h1 {
-  font-family: 'Plus Jakarta Sans', sans-serif; font-size: 3.8rem; font-weight: 800;
+  font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(2.2rem, 1.5rem + 3vw, 4.2rem); font-weight: 800;
   line-height: 1.08; letter-spacing: -0.03em; margin-bottom: 1.5rem; color: var(--green);
 }
 .hero-text h1 .accent { color: var(--gold); }
-.hero-text p { font-size: 1.15rem; color: var(--text-secondary); max-width: 520px; margin-bottom: 2rem; line-height: 1.7; }
+.hero-text p { font-size: clamp(1rem, 0.95rem + 0.2vw, 1.15rem); color: var(--text-secondary); max-width: 520px; margin-bottom: 2rem; line-height: 1.7; }
 .hero-badges { display: grid; grid-template-columns: repeat(4, auto); gap: 1rem; margin-bottom: 2.5rem; justify-content: start; }
 .hero-badge {
   display: inline-flex; align-items: center; gap: 0.5rem; white-space: nowrap;
   background: rgba(196,154,60,0.08); border: 1px solid rgba(196,154,60,0.18);
-  padding: 0.5rem 1.25rem; border-radius: 100px; font-size: 0.82rem; font-weight: 600;
+  padding: 0.5rem 1.25rem; border-radius: 100px; font-size: clamp(0.75rem, 0.72rem + 0.15vw, 0.82rem); font-weight: 600;
   color: var(--gold-dark); letter-spacing: 0.02em;
 }
 .hero-badge svg { width: 14px; height: 14px; fill: var(--gold); }
 .hero-buttons { display: flex; gap: 1rem; }
 .products { background: var(--cream); }
-.products-header { text-align: center; margin-bottom: 4rem; }
+.products-header { text-align: center; margin-bottom: clamp(2.5rem, 3.5vw, 4rem); }
 .products-header .section-subtitle { margin: 0 auto; }
-.products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+.products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(1rem, 1.5vw, 2rem); }
 .how-it-works { background: var(--cream); }
-.how-header { text-align: center; margin-bottom: 4rem; }
+.how-header { text-align: center; margin-bottom: clamp(2.5rem, 3.5vw, 4rem); }
 .how-header .section-subtitle { margin: 0 auto; }
-.steps { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1.5rem; position: relative; }
+.steps { display: grid; grid-template-columns: repeat(6, 1fr); gap: clamp(1rem, 1.5vw, 2rem); position: relative; }
 .steps::before { content: ''; position: absolute; top: 32px; left: 10%; right: 10%; height: 2px; background: linear-gradient(90deg, rgba(196,154,60,0.08), rgba(196,154,60,0.2), rgba(196,154,60,0.08)); z-index: 0; }
 .step { text-align: center; position: relative; z-index: 1; }
 .step-number {
   width: 64px; height: 64px; border-radius: 50%; background: var(--white); border: 2px solid var(--gold);
   display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem;
-  font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--gold); transition: all 0.3s;
+  font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(1.15rem, 1rem + 0.3vw, 1.4rem); font-weight: 800; color: var(--gold); transition: all 0.3s;
 }
 .step:hover .step-number { background: var(--gold); color: var(--white); box-shadow: 0 0 30px rgba(196,154,60,0.2); }
-.step h4 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--green); }
-.step p { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.6; padding: 0 0.5rem; }
+.step h4 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(0.9rem, 0.85rem + 0.2vw, 1.05rem); font-weight: 700; margin-bottom: 0.5rem; color: var(--green); }
+.step p { font-size: clamp(0.75rem, 0.72rem + 0.15vw, 0.82rem); color: var(--text-secondary); line-height: 1.6; padding: 0 0.5rem; }
 .about { background: var(--cream); }
-.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2.5rem, 4vw, 5rem); align-items: center; }
 .about-box {
   background: var(--white); border: 1px solid var(--gray-100); border-radius: 20px;
-  padding: 3rem; position: relative; overflow: hidden;
+  padding: clamp(2rem, 3vw, 3rem); position: relative; overflow: hidden;
 }
 .about-box::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at 30% 30%, rgba(196,154,60,0.04) 0%, transparent 50%); pointer-events: none; }
 .about-box-icon { width: 80px; height: 80px; background: rgba(196,154,60,0.08); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin-bottom: 0; }
 .about-box-icon svg { width: 40px; height: 40px; fill: var(--gold); }
-.about-quote { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.5rem; font-weight: 700; line-height: 1.4; letter-spacing: -0.01em; color: var(--green); }
+.about-quote { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(1.2rem, 1.05rem + 0.5vw, 1.5rem); font-weight: 700; line-height: 1.4; letter-spacing: -0.01em; color: var(--green); }
 .about-text .section-title { margin-bottom: 1.5rem; padding-left: 1rem; border-left: 3px solid var(--gold); }
-.about-text p { color: var(--text-secondary); font-size: 1rem; line-height: 1.8; margin-bottom: 1.25rem; }
+.about-text p { color: var(--text-secondary); font-size: clamp(0.9rem, 0.88rem + 0.15vw, 1rem); line-height: 1.8; margin-bottom: 1.25rem; }
 .apply { background: var(--cream); }
 .apply-header { text-align: center; margin-bottom: 3rem; }
 .apply-header .section-subtitle { margin: 0 auto; }
 .hero-text { animation: fade-up 0.8s ease-out; }
 @media (max-width: 1024px) {
-  .hero-text h1 { font-size: 2.8rem; }
   .hero-badges { grid-template-columns: repeat(2, auto); }
   .products-grid { grid-template-columns: repeat(2, 1fr); }
   .steps { grid-template-columns: repeat(3, 1fr); }
@@ -168,8 +168,6 @@
   .about-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 640px) {
-  .hero { padding: 7rem 1.5rem 3rem; }
-  .hero-text h1 { font-size: 2.2rem; }
   .hero-badges { grid-template-columns: repeat(2, auto); }
   .products-grid { grid-template-columns: 1fr; }
   .steps { grid-template-columns: 1fr; gap: 2rem; }

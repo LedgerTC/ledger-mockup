@@ -28,11 +28,11 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 .team-grid {
-  max-width: 1000px; margin: 0 auto;
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem;
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.5rem, 2vw, 2.5rem);
 }
 .team-card {
-  text-align: center; padding: 2rem 1.5rem;
+  text-align: center; padding: clamp(1.5rem, 2vw, 2rem) clamp(1rem, 1.5vw, 1.5rem);
   background: var(--white); border: 1px solid var(--gray-100); border-radius: 16px;
   transition: all 0.3s;
 }
@@ -51,11 +51,11 @@
 }
 .team-placeholder svg { width: 40px; height: 40px; fill: var(--gold); opacity: 0.5; }
 .team-name {
-  font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.1rem; font-weight: 700;
+  font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(1rem, 0.95rem + 0.2vw, 1.1rem); font-weight: 700;
   color: var(--green); margin-bottom: 0.25rem;
 }
 .team-title {
-  font-size: 0.85rem; color: var(--gold-dark); font-weight: 600; margin-bottom: 0.5rem;
+  font-size: clamp(0.78rem, 0.76rem + 0.15vw, 0.85rem); color: var(--gold-dark); font-weight: 600; margin-bottom: 0.5rem;
 }
 .team-links {
   display: flex; justify-content: center; gap: 1rem; margin-top: 0.75rem;
@@ -71,8 +71,14 @@
 .team-section-label {
   text-align: center; margin-bottom: 3rem;
 }
+@media (min-width: 1400px) {
+  .team-grid { grid-template-columns: repeat(4, 1fr); max-width: 1300px; }
+}
+@media (min-width: 2200px) {
+  .team-grid { max-width: 1400px; }
+}
 @media (max-width: 768px) {
-  .team-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .team-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 480px) {
   .team-grid { grid-template-columns: 1fr; }
