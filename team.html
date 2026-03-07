@@ -40,9 +40,10 @@ gtag('config','AW-17993082803');
   width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 clamp(1.5rem, 3vw, 4rem);
   display: grid;
   gap: clamp(1.5rem, 2vw, 2.5rem);
+  justify-content: center;
 }
-.team-grid-5 { grid-template-columns: repeat(5, 1fr); }
-.team-grid-6 { grid-template-columns: repeat(6, 1fr); }
+.team-grid-5 { grid-template-columns: repeat(5, minmax(150px, 220px)); }
+.team-grid-6 { grid-template-columns: repeat(6, minmax(120px, 200px)); }
 .team-card {
   text-align: center; padding: clamp(1.5rem, 2vw, 2rem) clamp(1rem, 1.5vw, 1.5rem);
   background: var(--white); border: 1px solid var(--gray-100); border-radius: 16px;
