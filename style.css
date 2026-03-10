@@ -266,11 +266,11 @@ section { padding: clamp(4rem, 5vw, 7rem) clamp(1.5rem, 3vw, 4rem); }
 .footer-inner {
   max-width: 1400px; margin: 0 auto;
   display: grid; grid-template-columns: 1fr auto 1fr;
-  grid-template-areas: "contact center logo";
+  grid-template-areas: "logo center contact";
   align-items: center; gap: 2rem;
 }
 .footer-contact {
-  grid-area: contact;
+  grid-area: contact; text-align: right;
   color: rgba(255,255,255,0.6); font-size: clamp(0.78rem, 0.75rem + 0.15vw, 0.85rem); line-height: 1.8;
 }
 .footer-contact a { color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s; }
@@ -281,7 +281,7 @@ section { padding: clamp(4rem, 5vw, 7rem) clamp(1.5rem, 3vw, 4rem); }
 .footer-legal { font-size: clamp(0.72rem, 0.7rem + 0.15vw, 0.8rem); }
 .footer-legal a { color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
 .footer-legal a:hover { color: var(--white); }
-.footer-logo-wrap { grid-area: logo; display: flex; justify-content: flex-end; align-items: center; }
+.footer-logo-wrap { grid-area: logo; display: flex; justify-content: flex-start; align-items: center; }
 .footer-logo-wrap img { height: 42px; width: auto; display: block; }
 /* Tablet + iPad: stacked centered */
 @media (max-width: 1100px) {
