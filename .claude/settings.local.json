@@ -33,7 +33,13 @@
       "Bash(ls private-lending-*.html)",
       "Bash(sed 's/\\\\.html$//')",
       "Bash(for f in private-lending-*.html)",
-      "Bash(do sed -i 's/major metropolitan statistical areas/major metropolitan areas/g' \"$f\")"
+      "Bash(do sed -i 's/major metropolitan statistical areas/major metropolitan areas/g' \"$f\")",
+      "Bash(git add style.css)",
+      "Bash(git status -u)",
+      "Bash(git add index.html)",
+      "Bash(git add get-in-touch.html broker-partners.html)",
+      "Bash(git add what-we-do.html)",
+      "Bash(python3 -c \":*)"
     ]
   }
 }
