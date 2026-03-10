@@ -33,7 +33,29 @@
       "Bash(ls private-lending-*.html)",
       "Bash(sed 's/\\\\.html$//')",
       "Bash(for f in private-lending-*.html)",
-      "Bash(do sed -i 's/major metropolitan statistical areas/major metropolitan areas/g' \"$f\")"
+      "Bash(do sed -i 's/major metropolitan statistical areas/major metropolitan areas/g' \"$f\")",
+      "Bash(git add style.css)",
+      "Bash(git status -u)",
+      "Bash(git add index.html)",
+      "Bash(git add get-in-touch.html broker-partners.html)",
+      "Bash(git add what-we-do.html)",
+      "Bash(python3 -c \":*)",
+      "Bash(grep -l \"script\" /c/Users/bulla/ClaudeCode/ledger-mockup/*.html)",
+      "Bash(grep -c \"<script\" /c/Users/bulla/ClaudeCode/ledger-mockup/*.html)",
+      "Bash(wc -l /c/Users/bulla/ClaudeCode/ledger-mockup/*.html)",
+      "Bash(ls -lh /c/Users/bulla/ClaudeCode/ledger-mockup/*.html)",
+      "Bash(grep -l 'style=\"\"position: fixed.*mobile-close\\\\|mobile-close.*style=\"\"position: fixed' *.html)",
+      "Bash(cygpath -w /tmp/footer-old.txt)",
+      "Bash(grep -c 'class=\"\"nav-cta\"\">Get in Touch</a>' *.html)",
+      "Bash(grep -c 'class=\"\"nav-cta\"\">Apply Now</a>' *.html)",
+      "Bash(grep -c 'class=\"\"mobile-cta\"\">Get in Touch</a>' *.html)",
+      "Bash(grep -c 'class=\"\"mobile-cta\"\">Apply Now</a>' *.html)",
+      "Bash(grep -c '>Get in Touch &rarr;</a>' *.html)",
+      "Bash(grep -c '>Get in Touch →</a>' *.html)",
+      "Bash(grep -n 'Get in Touch' *.html)",
+      "Bash(grep -c '>Apply Now &rarr;</a>' *.html)",
+      "Bash(grep -c '>Apply Now →</a>' *.html)",
+      "Bash(grep -c '  <a href=\"\"broker-partners.html\"\">Broker Partners</a>' *.html)"
     ]
   }
 }

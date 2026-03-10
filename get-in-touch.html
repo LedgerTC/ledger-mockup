@@ -112,7 +112,7 @@ gtag('config','AW-17993082803');
       </ul></div>
     </li>
   </ul>
-  <a href="get-in-touch.html" class="nav-cta">Get in Touch</a>
+  <a href="get-in-touch.html" class="nav-cta">Apply Now</a>
   <button class="nav-hamburger" aria-label="Open menu">&#9776;</button>
 </nav>
 
@@ -134,8 +134,13 @@ gtag('config','AW-17993082803');
     <a href="team.html">Meet the Team</a>
     <a href="where-we-lend.html">Where We Lend</a>
   </div>
-  <a href="broker-partners.html">Broker Partners</a>
-  <a href="get-in-touch.html" class="mobile-cta">Get in Touch</a>
+  <a href="broker-partners.html" class="mobile-section-label" style="text-decoration: none;">Broker Partners</a>
+  <div class="mobile-section-label">Client Portal</div>
+  <div class="mobile-sub">
+    <a href="https://partner.trustpoint.ai/login" target="_blank">Submit Draws</a>
+    <a href="https://ledgertc-pos.elphimortgage.com/login" target="_blank">Loan Diligence</a>
+  </div>
+  <a href="get-in-touch.html" class="mobile-cta">Apply Now</a>
 </div>
 <script>
 (function(){
@@ -167,10 +172,6 @@ gtag('config','AW-17993082803');
           <input type="text" name="last_name" placeholder="Smith" required>
         </div>
         <div class="form-group">
-          <label>Company Name</label>
-          <input type="text" name="company" placeholder="Your LLC or entity name">
-        </div>
-        <div class="form-group">
           <label>Email *</label>
           <input type="email" name="email" placeholder="john@company.com" required>
         </div>
@@ -178,34 +179,6 @@ gtag('config','AW-17993082803');
           <label>Phone *</label>
           <input type="tel" name="phone" placeholder="(555) 555-5555" required>
           <div id="phoneError" style="display:none; color:#dc2626; font-size:0.8rem; margin-top:0.25rem;">Please enter a valid phone number</div>
-        </div>
-        <div class="form-group">
-          <label>Loan Type *</label>
-          <select name="loan_type" required>
-            <option value="" disabled selected>Select a product</option>
-            <option value="Ground-Up Construction">Ground-Up Construction</option>
-            <option value="DSCR">DSCR</option>
-            <option value="Bridge">Bridge</option>
-            <option value="Fix & Flip">Fix & Flip</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Loan Amount Requested</label>
-          <input type="text" name="loan_amount" placeholder="$500,000 - $5,000,000">
-          <div id="loanAmountError" style="display:none; color:#dc2626; font-size:0.8rem; margin-top:0.25rem;">Please enter a valid loan amount</div>
-        </div>
-        <div class="form-group">
-          <label>Experience Level</label>
-          <select name="experience">
-            <option value="" disabled selected>Select experience</option>
-            <option value="New (0-2 projects)">New Investor (0-2 projects)</option>
-            <option value="Experienced (3-9 projects)">Experienced (3-9 projects)</option>
-            <option value="Professional (10+ projects)">Professional (10+ projects)</option>
-          </select>
-        </div>
-        <div class="form-group full">
-          <label>Property Address</label>
-          <input type="text" name="property_address" placeholder="Full property address (if identified)">
         </div>
         <div class="form-group full">
           <label>Project Overview</label>
@@ -272,41 +245,30 @@ gtag('config','AW-17993082803');
 </section>
 
 <footer class="footer">
-  <div class="footer-content" style="text-align: center; align-items: center;">
-    <div class="footer-logo"><img src="logo-inverse.png" alt="Ledger Trade &amp; Capital" width="269" height="67" style="height: 52px; width: auto; display: block; margin: 0 auto;"></div>
-    <div style="color: rgba(255,255,255,0.6); font-size: 0.85rem; line-height: 1.8; margin-top: 1rem; text-align: center;">
+  <div class="footer-inner">
+    <div class="footer-contact">
       60 Broad Street, Suite 2428, New York, NY 10004<br>
-      <a href="tel:201-749-1691" style="color: rgba(255,255,255,0.6); text-decoration: none;">201-749-1691</a>
-      <span style="margin: 0 0.5rem;">|</span>
-      <a href="mailto:Info@ledgertc.com" style="color: rgba(255,255,255,0.6); text-decoration: none;">Info@ledgertc.com</a>
-      <span style="margin: 0 0.5rem;">|</span>
-      <a href="https://www.linkedin.com/company/ledger-trade-capital/" target="_blank" style="color: rgba(255,255,255,0.6); text-decoration: none;">LinkedIn</a>
+      <a href="tel:201-749-1691">201-749-1691</a><span class="footer-sep">|</span><a href="mailto:Info@ledgertc.com">Info@ledgertc.com</a><span class="footer-sep">|</span><a href="https://www.linkedin.com/company/ledger-trade-capital/" target="_blank">LinkedIn</a>
     </div>
-    <div style="color: rgba(255,255,255,0.4); font-size: 0.78rem; margin-top: 1rem; text-align: center;">
-      <a href="terms-and-conditions.html" style="color: rgba(255,255,255,0.4); text-decoration: none;">Terms of Service</a>
-      <span style="margin: 0 0.5rem;">|</span>
-      <a href="privacy-policy.html" style="color: rgba(255,255,255,0.4); text-decoration: none;">Privacy Policy</a>
+    <div class="footer-center">
+      <div class="footer-copy">&copy; 2026 Ledger Trade &amp; Capital. All rights reserved.</div>
+      <div class="footer-legal"><a href="terms-and-conditions.html">Terms of Service</a><span class="footer-sep">|</span><a href="privacy-policy.html">Privacy Policy</a></div>
     </div>
-    <div class="footer-copy" style="text-align: center;">&copy; 2026 Ledger Trade &amp; Capital. All rights reserved.</div>
+    <div class="footer-logo-wrap">
+      <img src="logo-inverse.png" alt="Ledger Trade &amp; Capital" width="269" height="67">
+    </div>
   </div>
 </footer>
 
-<!-- Field validation -->
+<!-- Phone validation -->
 <script>
 (function(){
   var phoneInput = document.querySelector('input[name="phone"]');
-  var loanInput = document.querySelector('input[name="loan_amount"]');
   var phoneError = document.getElementById('phoneError');
-  var loanAmountError = document.getElementById('loanAmountError');
 
   function isValidPhone(value) {
     var stripped = value.replace(/[^\d]/g, '');
     return /^1?\d{10}$/.test(stripped);
-  }
-
-  function isValidLoanAmount(value) {
-    var raw = value.replace(/[$,\s]/g, '');
-    return raw === '' || (/^\d+$/.test(raw) && parseInt(raw, 10) > 0);
   }
 
   function validatePhone() {
@@ -316,16 +278,6 @@ gtag('config','AW-17993082803');
       return false;
     }
     phoneError.style.display = 'none';
-    return true;
-  }
-
-  function validateLoanAmount() {
-    var val = loanInput.value.trim();
-    if (val && !isValidLoanAmount(val)) {
-      loanAmountError.style.display = 'block';
-      return false;
-    }
-    loanAmountError.style.display = 'none';
     return true;
   }
 
@@ -343,15 +295,7 @@ gtag('config','AW-17993082803');
     input.value = formatted;
   }
   phoneInput.addEventListener('input', formatPhoneRealtime);
-
   phoneInput.addEventListener('blur', validatePhone);
-  loanInput.addEventListener('blur', validateLoanAmount);
-
-  loanInput.addEventListener('input', function() {
-    var raw = this.value.replace(/[^\d]/g, '');
-    if (raw === '') { this.value = ''; return; }
-    this.value = '$' + parseInt(raw, 10).toLocaleString('en-US');
-  });
 
   function formatPhoneE164() {
     var digits = phoneInput.value.replace(/[^\d]/g, '');
@@ -363,15 +307,7 @@ gtag('config','AW-17993082803');
 
   window._ledgerValidation = {
     validatePhone: validatePhone,
-    validateLoanAmount: validateLoanAmount,
-    formatPhone: formatPhoneE164,
-    stripLoanFormat: function() {
-      loanInput.value = loanInput.value.replace(/[$,\s]/g, '');
-    },
-    restoreLoanFormat: function() {
-      var raw = loanInput.value.replace(/[^\d]/g, '');
-      if (raw !== '') loanInput.value = '$' + parseInt(raw, 10).toLocaleString('en-US');
-    }
+    formatPhone: formatPhoneE164
   };
 })();
 </script>
@@ -387,17 +323,13 @@ gtag('config','AW-17993082803');
     e.preventDefault();
     errorBox.style.display = 'none';
 
-    var phoneValid = window._ledgerValidation.validatePhone();
-    var loanValid = window._ledgerValidation.validateLoanAmount();
-    if (!phoneValid || !loanValid) return;
+    if (!window._ledgerValidation.validatePhone()) return;
 
     submitBtn.disabled = true;
     submitBtn.textContent = 'Submitting…';
 
     window._ledgerValidation.formatPhone();
-    window._ledgerValidation.stripLoanFormat();
     var formData = new URLSearchParams(new FormData(form));
-    window._ledgerValidation.restoreLoanFormat();
 
     fetch('/.netlify/functions/submit-form', {
       method: 'POST',
