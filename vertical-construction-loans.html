@@ -157,13 +157,13 @@ gtag('config','AW-17993082803');
       </ul></div>
     </li>
   </ul>
-  <a href="get-in-touch.html" class="nav-cta">Get in Touch</a>
+  <a href="get-in-touch.html" class="nav-cta">Apply Now</a>
   <button class="nav-hamburger" aria-label="Open menu">&#9776;</button>
 </nav>
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
-  <button class="mobile-close" aria-label="Close menu" style="position: fixed; top: 1.25rem; right: 1.5rem; background: none; border: none; font-size: 2.2rem; color: var(--green); cursor: pointer; line-height: 1; padding: 0.25rem; z-index: 200;">&times;</button>
+  <button class="mobile-close" aria-label="Close menu">&times;</button>
   <a href="index.html">Home</a>
   <div class="mobile-section-label">Loan Products</div>
   <div class="mobile-sub">
@@ -185,7 +185,7 @@ gtag('config','AW-17993082803');
     <a href="https://partner.trustpoint.ai/login" target="_blank">Submit Draws</a>
     <a href="https://ledgertc-pos.elphimortgage.com/login" target="_blank">Loan Diligence</a>
   </div>
-  <a href="get-in-touch.html" class="mobile-cta">Get in Touch</a>
+  <a href="get-in-touch.html" class="mobile-cta">Apply Now</a>
 </div>
 <script>
 (function(){
@@ -244,10 +244,44 @@ gtag('config','AW-17993082803');
         <li><svg viewBox="0 0 24 24" fill="var(--gold)"><circle cx="12" cy="12" r="5"/></svg>Repeat borrower programs for builders scaling their pipeline</li>
       </ul>
     </div>
-    <div class="content-block">
-      <h2>Ideal Borrower</h2>
-      <p>Our construction loans are designed for builders with experience completing residential projects. You should have a clear scope of work, an itemized budget, and a realistic timeline.</p>
-      <p>Whether you're building your 5th home or your 50th, we structure terms that make sense for where you are in your business.</p>
+  </div>
+</section>
+
+<section class="content-section" style="background: var(--cream);">
+  <div style="max-width: 800px; margin: 0 auto;">
+    <div class="section-label" style="text-align: center;">Get Started</div>
+    <h2 class="section-title" style="text-align: center; font-size: clamp(1.5rem, 1.3rem + 0.8vw, 2rem);">Apply Now</h2>
+    <p class="section-subtitle" style="text-align: center; margin: 0 auto 2rem;">Tell us about your project and we'll be in touch within one business day.</p>
+    <div class="apply-form">
+      <form id="constructionApplyForm" class="form-grid">
+        <div class="form-group">
+          <label for="c_firstName">First Name</label>
+          <input type="text" id="c_firstName" name="firstName" placeholder="First name" required>
+        </div>
+        <div class="form-group">
+          <label for="c_lastName">Last Name</label>
+          <input type="text" id="c_lastName" name="lastName" placeholder="Last name" required>
+        </div>
+        <div class="form-group">
+          <label for="c_email">Email</label>
+          <input type="email" id="c_email" name="email" placeholder="your@email.com" required>
+        </div>
+        <div class="form-group">
+          <label for="c_phone">Phone Number</label>
+          <input type="tel" id="c_phone" name="phone" placeholder="(555) 000-0000" required>
+        </div>
+        <div class="form-group full">
+          <label for="c_message">Project Overview</label>
+          <textarea id="c_message" name="message" placeholder="Tell us about your project — location, scope, timeline, and anything else relevant." rows="5" required></textarea>
+        </div>
+        <div class="form-submit">
+          <button type="submit">Apply Now</button>
+        </div>
+      </form>
+      <div class="form-success" id="constructionFormSuccess">
+        <h3>Application Received</h3>
+        <p>Thank you — our team will be in touch within one business day.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -273,6 +307,10 @@ gtag('config','AW-17993082803');
   </div>
 
   <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-question">Who is the Ideal Borrower?<svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>
+      <div class="faq-answer"><div class="faq-answer-inner">Our construction loans are designed for builders with experience completing residential projects. You should have a clear scope of work, an itemized budget, and a realistic timeline. Whether you're building your 5th home or your 50th, we structure terms that make sense for where you are in your business.</div></div>
+    </div>
     <div class="faq-item">
       <button class="faq-question">What is the maximum leverage on a construction loan?<svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>
       <div class="faq-answer"><div class="faq-answer-inner">New construction loans are available up to 100% of loan-to-cost (LTC) and 75% of the loan-to-after-repair-value (LTARV). Leverage depends on borrower experience, credit score, and the overall project profile.</div></div>
@@ -308,32 +346,71 @@ gtag('config','AW-17993082803');
 <div class="cta-band" style="background: var(--cream);">
   <div class="container">
     <h2 class="section-title" style="color: var(--green);">Ready to Break Ground?</h2>
-    <a href="get-in-touch.html" class="btn-primary" style="font-size: 1.05rem; padding: 1rem 2.5rem;">Get in Touch →</a>
+    <a href="get-in-touch.html" class="btn-primary" style="font-size: 1.05rem; padding: 1rem 2.5rem;">Apply Now →</a>
   </div>
 </div>
 
 <footer class="footer">
-  <div class="footer-content" style="text-align: center; align-items: center;">
-    <div class="footer-logo"><img src="logo-inverse.png" alt="Ledger Trade &amp; Capital" width="269" height="67" style="height: 52px; width: auto; display: block; margin: 0 auto;"></div>
-    <div style="color: rgba(255,255,255,0.6); font-size: 0.85rem; line-height: 1.8; margin-top: 1rem; text-align: center;">
+  <div class="footer-inner">
+    <div class="footer-contact">
       60 Broad Street, Suite 2428, New York, NY 10004<br>
-      <a href="tel:201-749-1691" style="color: rgba(255,255,255,0.6); text-decoration: none;">201-749-1691</a>
-      <span style="margin: 0 0.5rem;">|</span>
-      <a href="mailto:Info@ledgertc.com" style="color: rgba(255,255,255,0.6); text-decoration: none;">Info@ledgertc.com</a>
-      <span style="margin: 0 0.5rem;">|</span>
-      <a href="https://www.linkedin.com/company/ledger-trade-capital/" target="_blank" style="color: rgba(255,255,255,0.6); text-decoration: none;">LinkedIn</a>
+      <a href="tel:201-749-1691">201-749-1691</a><span class="footer-sep">|</span><a href="mailto:Info@ledgertc.com">Info@ledgertc.com</a><span class="footer-sep">|</span><a href="https://www.linkedin.com/company/ledger-trade-capital/" target="_blank">LinkedIn</a>
     </div>
-    <div style="color: rgba(255,255,255,0.4); font-size: 0.78rem; margin-top: 1rem; text-align: center;">
-      <a href="terms-and-conditions.html" style="color: rgba(255,255,255,0.4); text-decoration: none;">Terms of Service</a>
-      <span style="margin: 0 0.5rem;">|</span>
-      <a href="privacy-policy.html" style="color: rgba(255,255,255,0.4); text-decoration: none;">Privacy Policy</a>
+    <div class="footer-center">
+      <div class="footer-copy">&copy; 2026 Ledger Trade &amp; Capital. All rights reserved.</div>
+      <div class="footer-legal"><a href="terms-and-conditions.html">Terms of Service</a><span class="footer-sep">|</span><a href="privacy-policy.html">Privacy Policy</a></div>
     </div>
-    <div class="footer-copy" style="text-align: center;">&copy; 2026 Ledger Trade &amp; Capital. All rights reserved.</div>
+    <div class="footer-logo-wrap">
+      <img src="logo-inverse.png" alt="Ledger Trade &amp; Capital" width="269" height="67">
+    </div>
   </div>
 </footer>
 
 <!-- HubSpot tracking -->
 <script type="text/javascript" id="hs-script-loader" defer src="//js.hs-scripts.com/46107229.js"></script>
+
+<script>
+(function () {
+  var form = document.getElementById('constructionApplyForm');
+  if (!form) return;
+  var phoneInput = document.getElementById('c_phone');
+  phoneInput.addEventListener('input', function () {
+    var digits = this.value.replace(/\D/g, '').slice(0, 10);
+    if (digits.length <= 3) this.value = digits;
+    else if (digits.length <= 6) this.value = '(' + digits.slice(0,3) + ') ' + digits.slice(3);
+    else this.value = '(' + digits.slice(0,3) + ') ' + digits.slice(3,6) + '-' + digits.slice(6);
+  });
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var btn = form.querySelector('button[type="submit"]');
+    btn.textContent = 'Submitting…';
+    btn.disabled = true;
+    var raw = phoneInput.value.replace(/\D/g, '');
+    var e164 = raw.length === 10 ? '+1' + raw : '+' + raw;
+    fetch('/.netlify/functions/submit-form', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        firstName: document.getElementById('c_firstName').value.trim(),
+        lastName: document.getElementById('c_lastName').value.trim(),
+        email: document.getElementById('c_email').value.trim(),
+        phone: e164,
+        message: document.getElementById('c_message').value.trim()
+      })
+    })
+    .then(function (r) { return r.json(); })
+    .then(function () {
+      form.style.display = 'none';
+      document.getElementById('constructionFormSuccess').classList.add('show');
+    })
+    .catch(function () {
+      btn.textContent = 'Apply Now';
+      btn.disabled = false;
+      alert('Something went wrong — please try again or email Info@ledgertc.com');
+    });
+  });
+})();
+</script>
 
 </body>
 </html>
