@@ -835,6 +835,7 @@
           <div class="form-group">
             <label for="phone">Phone</label>
             <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000" required>
+            <div id="phoneError" style="display:none; color:#dc2626; font-size:0.8rem; margin-top:0.25rem;">Please enter a valid phone number</div>
           </div>
 
           <div class="form-group">
@@ -1047,37 +1048,85 @@
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/javascript" id="hs-script-loader" async defer src="https://js.hs-scripts.com/46107229.js"></script>
 
   <!-- Phone Formatting + Form Submission -->
+  <!-- Phone validation -->
   <script>
-    // Phone input formatting
+  (function(){
     var phoneInput = document.getElementById('phone');
-    if (phoneInput) {
-      phoneInput.addEventListener('input', function(e) {
-        var x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
-        e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
-      });
+    var phoneError = document.getElementById('phoneError');
+
+    function isValidPhone(value) {
+      var stripped = value.replace(/[^\d]/g, '');
+      return /^1?\d{10}$/.test(stripped);
     }
 
-    // Form submission
-    document.getElementById('constructionLPForm').addEventListener('submit', function(e) {
+    function validatePhone() {
+      var val = phoneInput.value.trim();
+      if (val && !isValidPhone(val)) {
+        phoneError.style.display = 'block';
+        return false;
+      }
+      phoneError.style.display = 'none';
+      return true;
+    }
+
+    function formatPhoneRealtime(e) {
+      var input = e.target;
+      var digits = input.value.replace(/\D/g, '').substring(0, 10);
+      var formatted = '';
+      if (digits.length > 6) {
+        formatted = '(' + digits.substring(0,3) + ') ' + digits.substring(3,6) + '-' + digits.substring(6);
+      } else if (digits.length > 3) {
+        formatted = '(' + digits.substring(0,3) + ') ' + digits.substring(3);
+      } else if (digits.length > 0) {
+        formatted = '(' + digits;
+      }
+      input.value = formatted;
+    }
+    phoneInput.addEventListener('input', formatPhoneRealtime);
+    phoneInput.addEventListener('blur', validatePhone);
+
+    function formatPhoneE164() {
+      var digits = phoneInput.value.replace(/[^\d]/g, '');
+      if (digits.length === 11 && digits[0] === '1') digits = digits.substring(1);
+      if (digits.length === 10) {
+        phoneInput.value = '+1 (' + digits.substring(0,3) + ') ' + digits.substring(3,6) + '-' + digits.substring(6);
+      }
+    }
+
+    window._ledgerValidation = {
+      validatePhone: validatePhone,
+      formatPhone: formatPhoneE164
+    };
+  })();
+  </script>
+
+  <!-- Form submission handler -->
+  <script>
+  (function(){
+    var form = document.getElementById('constructionLPForm');
+    var submitBtn = form.querySelector('.form-submit');
+
+    form.addEventListener('submit', function(e) {
       e.preventDefault();
 
       // Honeypot check
-      if (this.querySelector('[name="website"]').value) return;
+      if (form.querySelector('[name="website"]').value) return;
 
-      var submitBtn = this.querySelector('.form-submit');
+      // Validate phone
+      if (!window._ledgerValidation.validatePhone()) return;
+
       submitBtn.disabled = true;
       submitBtn.textContent = 'Submitting...';
 
-      // Format phone to E.164
-      var rawPhone = this.querySelector('[name="phone"]').value.replace(/\D/g, '');
-      var formattedPhone = rawPhone.length === 10 ? '+1' + rawPhone : '+' + rawPhone;
+      // Format phone before submission
+      window._ledgerValidation.formatPhone();
 
       var formData = new URLSearchParams();
-      formData.append('firstname', this.querySelector('[name="first_name"]').value);
-      formData.append('lastname', this.querySelector('[name="last_name"]').value);
-      formData.append('email', this.querySelector('[name="email"]').value);
-      formData.append('phone', formattedPhone);
-      formData.append('details', this.querySelector('[name="details"]').value);
+      formData.append('firstname', form.querySelector('[name="first_name"]').value);
+      formData.append('lastname', form.querySelector('[name="last_name"]').value);
+      formData.append('email', form.querySelector('[name="email"]').value);
+      formData.append('phone', form.querySelector('[name="phone"]').value);
+      formData.append('details', form.querySelector('[name="details"]').value);
       formData.append('form_source', 'construction-landing-page-google-ads');
 
       fetch('/.netlify/functions/submit-form', {
@@ -1085,8 +1134,11 @@
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: formData.toString()
       })
-      .then(function(response) {
-        if (response.ok) {
+      .then(function(res) {
+        return res.json().then(function(data) { return { ok: res.ok, status: res.status, data: data }; });
+      })
+      .then(function(result) {
+        if (result.ok && result.data.success) {
           document.getElementById('constructionLPForm').style.display = 'none';
           document.getElementById('form-success').style.display = 'block';
           gtag('event', 'form_submit', { 'form_id': 'construction-lp' });
@@ -1096,4 +1148,14 @@
           alert('Something went wrong. Please call us at (201) 749-1691.');
         }
       })
-      .c
+      .catch(function() {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Get My Rate \u2192';
+        alert('A network error occurred. Please call us at (201) 749-1691.');
+      });
+    });
+  })();
+  </script>
+
+</body>
+</html>
