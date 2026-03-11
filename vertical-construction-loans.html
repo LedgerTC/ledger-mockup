@@ -362,7 +362,7 @@ gtag('config','AW-17993082803');
   <div class="footer-inner">
     <div class="footer-contact">
       60 Broad Street, Suite 2428, New York, NY 10004<br>
-      <a href="tel:201-749-1691">201-749-1691</a><span class="footer-sep">|</span><a href="mailto:Info@ledgertc.com">Info@ledgertc.com</a><span class="footer-sep">|</span><a href="https://www.linkedin.com/company/ledger-trade-capital/" target="_blank">LinkedIn</a>
+      <a href="tel:201-749-1691">201-749-1691</a><span class="footer-sep">|</span><a href="/cdn-cgi/l/email-protection#8dc4e3ebe2cde1e8e9eae8fff9eea3eee2e0"><span class="__cf_email__" data-cfemail="87cee9e1e8c7ebe2e3e0e2f5f3e4a9e4e8ea">[email&#160;protected]</span></a><span class="footer-sep">|</span><a href="https://www.linkedin.com/company/ledger-trade-capital/" target="_blank">LinkedIn</a>
     </div>
     <div class="footer-center">
       <div class="footer-copy">&copy; 2026 Ledger Trade &amp; Capital. All rights reserved.</div>
@@ -375,7 +375,7 @@ gtag('config','AW-17993082803');
 </footer>
 
 <!-- HubSpot tracking -->
-<script type="text/javascript" id="hs-script-loader" defer src="//js.hs-scripts.com/46107229.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/javascript" id="hs-script-loader" defer src="//js.hs-scripts.com/46107229.js"></script>
 
 <script>
 (function () {
@@ -415,21 +415,11 @@ gtag('config','AW-17993082803');
       if (result.ok && result.data.success) {
         form.style.display = 'none';
         document.getElementById('constructionFormSuccess').classList.add('show');
+        gtag('event', 'form_submit', { 'form_id': 'vertical-construction-loans' });
       } else {
         var msg = result.data.error || 'Something went wrong. Please try again or contact us directly at Info@ledgertc.com.';
         alert(msg);
         submitBtn.disabled = false;
         submitBtn.textContent = 'Apply Now';
       }
-    })
-    .catch(function() {
-      alert('A network error occurred. Please check your connection and try again.');
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Apply Now';
-    });
-  });
-})();
-</script>
-
-</body>
-</html>
+  

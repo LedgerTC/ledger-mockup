@@ -867,7 +867,7 @@
     <div class="closings-grid">
       <div class="closing-card">
         <div class="closing-amount">$15.5M</div>
-        <div class="closing-type">Townhome Portfolio</div>
+        <div class="closing-type">Portfolio / Multi-Loan</div>
         <div class="closing-detail">Aspen, CO</div>
       </div>
       <div class="closing-card">
@@ -1038,13 +1038,13 @@
       </div>
       <div class="footer-contact">
         60 Broad Street, Suite 2428, New York, NY 10004<br>
-        <a href="tel:201-749-1691">201-749-1691</a><span class="footer-sep">|</span><a href="mailto:Info@ledgertc.com">Info@ledgertc.com</a><span class="footer-sep">|</span><a href="https://www.linkedin.com/company/ledger-trade-capital/" target="_blank">LinkedIn</a>
+        <a href="tel:201-749-1691">201-749-1691</a><span class="footer-sep">|</span><a href="/cdn-cgi/l/email-protection#1d54737b725d7178797a786f697e337e7270"><span class="__cf_email__" data-cfemail="e3aa8d858ca38f86878486919780cd808c8e">[email&#160;protected]</span></a><span class="footer-sep">|</span><a href="https://www.linkedin.com/company/ledger-trade-capital/" target="_blank">LinkedIn</a>
       </div>
     </div>
   </footer>
 
   <!-- HubSpot Tracking Code -->
-  <script type="text/javascript" id="hs-script-loader" async defer src="https://js.hs-scripts.com/46107229.js"></script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/javascript" id="hs-script-loader" async defer src="https://js.hs-scripts.com/46107229.js"></script>
 
   <!-- Phone Formatting + Form Submission -->
   <script>
@@ -1073,10 +1073,11 @@
       var formattedPhone = rawPhone.length === 10 ? '+1' + rawPhone : '+' + rawPhone;
 
       var formData = new URLSearchParams();
-      formData.append('first_name', this.querySelector('[name="first_name"]').value);
-      formData.append('last_name', this.querySelector('[name="last_name"]').value);
+      formData.append('firstname', this.querySelector('[name="first_name"]').value);
+      formData.append('lastname', this.querySelector('[name="last_name"]').value);
       formData.append('email', this.querySelector('[name="email"]').value);
       formData.append('phone', formattedPhone);
+      formData.append('details', this.querySelector('[name="details"]').value);
       formData.append('form_source', 'construction-landing-page-google-ads');
 
       fetch('/.netlify/functions/submit-form', {
@@ -1088,19 +1089,11 @@
         if (response.ok) {
           document.getElementById('constructionLPForm').style.display = 'none';
           document.getElementById('form-success').style.display = 'block';
+          gtag('event', 'form_submit', { 'form_id': 'construction-lp' });
         } else {
           submitBtn.disabled = false;
           submitBtn.textContent = 'Get My Rate \u2192';
           alert('Something went wrong. Please call us at (201) 749-1691.');
         }
       })
-      .catch(function() {
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Get My Rate \u2192';
-        alert('Something went wrong. Please call us at (201) 749-1691.');
-      });
-    });
-  </script>
-
-</body>
-</html>
+      .c
