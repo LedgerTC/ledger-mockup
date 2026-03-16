@@ -565,11 +565,16 @@
       justify-content: space-between;
       gap: 12px;
     }
-    .hero-title { font-size: 22px; flex-shrink: 0; order: 2; }
+    .hero-title { display: none; }
     .hero-divider { display: none; }
     .hero-desc { display: none; }
-    .mobile-logo { display: block !important; order: 1; flex-shrink: 0; }
-    .mobile-logo img { height: 36px; width: auto; }
+    .mobile-logo { display: flex !important; align-items: center; gap: 8px; flex-shrink: 0; }
+    .mobile-logo img { height: 28px; width: auto; }
+    .mobile-playbook-label { line-height: 0.85; }
+    .mobile-playbook-label .pb-play, .mobile-playbook-label .pb-book { font-size: 15px; display: block; }
+    .mobile-doc-title { display: block !important; font-family: 'Playfair Display', serif; font-size: 13px; font-weight: 700; color: #fff; text-align: center; line-height: 1.25; letter-spacing: 0.3px; flex: 1; min-width: 0; }
+    .mobile-client-logo { display: block !important; flex-shrink: 0; }
+    .mobile-client-logo img { height: 36px; width: auto; display: block; }
 
     /* Mobile info block — always visible */
     .mobile-hero-info { display: block !important; }
@@ -1146,8 +1151,11 @@
   <div class="hero-inner">
     <!-- Mobile-only logo (hidden on desktop via .mobile-logo { display:none }) -->
     <div class="mobile-logo" style="display:none;">
-      <img src="https://ledgertc.com/logos/ledger-icon-inverse.svg" alt="Ledger" style="height:28px;width:auto;">
+      <img src="__HOST__/logos/ledger-icon-inverse.svg" alt="Ledger">
+      <div class="mobile-playbook-label"><span class="pb-play">PLAY</span><span class="pb-book">BOOK</span></div>
     </div>
+    <div class="mobile-doc-title" style="display:none;">Ground-Up<br>Construction Lending</div>
+    <div class="mobile-client-logo" style="display:none;"><img src="__HOST__/logos/lord-abbett.png" alt="Lord Abbett"></div>
     <h1 class="hero-title">PLAY<br><span>BOOK</span></h1>
     <div class="hero-divider"></div>
     <p class="hero-desc">
@@ -1158,7 +1166,7 @@
 
   </div>
   <div class="mobile-hero-info" style="display:none; padding: 8px 0 0;">
-    <div class="mobile-hero-subtitle" style="font-family:'Playfair Display',serif; font-size:16px; font-weight:700; color:#fff; margin-bottom:4px;">Ground-Up Construction Lending</div>
+
     <div class="mobile-hero-detail">
       <div style="font-size:11px; color:var(--cream); line-height:1.5; margin-bottom:4px;">A complete reference guide covering <strong style="color:var(--gold);">submission</strong>, <strong style="color:var(--gold);">underwriting</strong>, <strong style="color:var(--gold);">closing</strong>, <strong style="color:var(--gold);">servicing</strong>, and <strong style="color:var(--gold);">draw</strong> processes for ground-up construction lending transactions.</div>
       <div style="font-size:9px; color:var(--cream); opacity:0.7; letter-spacing:0.5px;">Prepared for Lord Abbett Private Real Estate Advisor, LLC</div>
