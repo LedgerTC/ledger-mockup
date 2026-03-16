@@ -35,16 +35,29 @@ gtag('config','AW-17993082803');
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
   --green:#2b4a42;
+  --green-dark:#1e3830;
+  --green-light:#3a5f55;
   --gold:#c49a3c;
+  --gold-dark:#b08832;
+  --gold-light:#d4ad52;
   --cream:#f2efe9;
+  --cream-dark:#e8e4dc;
   --white:#ffffff;
+  --gray-100:#e0ddd6;
+  --gray-500:#6b7280;
+  --gray-600:#4b5563;
+  --text-primary:var(--green);
+  --text-secondary:var(--gray-600);
+  --text-muted:var(--gray-500);
 }
 html{scroll-behavior:smooth;}
 body{
   font-family:'DM Sans',sans-serif;
-  color:#333;
+  color:var(--text-primary);
+  font-size:clamp(1rem,0.95rem + 0.25vw,1.125rem);
   line-height:1.6;
-  background:var(--white);
+  background:var(--cream);
+  -webkit-font-smoothing:antialiased;
 }
 h1,h2,h3,h4,h5,h6{
   font-family:'Plus Jakarta Sans','DM Sans',sans-serif;
