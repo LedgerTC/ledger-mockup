@@ -1,2 +1,10 @@
 [functions]
   included_files = ["netlify/functions/documents/**"]
+
+[build]
+  command = "echo 'User-agent: *' > robots.txt && echo 'Disallow: /' >> robots.txt"
+  publish = "."
+
+[context.production]
+  command = "echo 'User-agent: *' > robots.txt && echo 'Allow: /' >> robots.txt && echo 'Sitemap: https://ledgertc.com/sitemap.xml' >> robots.txt"
+  publish = "."
