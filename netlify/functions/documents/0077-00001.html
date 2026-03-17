@@ -581,9 +581,9 @@
     .hero-desc { display: none; }
     .mobile-logo { display: flex !important; align-items: center; gap: 8px; flex-shrink: 0; }
     .mobile-logo img { height: 28px; width: auto; }
-    .mobile-playbook-label { line-height: 0.85; }
-    .mobile-playbook-label .pb-play, .mobile-playbook-label .pb-book { font-size: 15px; display: block; }
-    .mobile-doc-title { display: block !important; font-family: 'Playfair Display', serif; font-size: 13px; font-weight: 700; color: #fff; text-align: center; line-height: 1.25; letter-spacing: 0.3px; flex: 1; min-width: 0; }
+    .mobile-doc-title { display: block !important; font-family: 'Playfair Display', serif; font-weight: 900; text-align: center; line-height: 1.1; letter-spacing: -0.3px; flex: 1; min-width: 0; }
+    .mobile-title-line1 { font-size: 15px; color: #fff; display: block; }
+    .mobile-title-line2 { font-size: 10px; color: var(--gold); display: block; font-weight: 700; letter-spacing: 0.5px; }
     .mobile-client-logo { display: block !important; flex-shrink: 0; }
     .mobile-client-logo img { height: 36px; width: auto; display: block; }
 
@@ -1166,9 +1166,8 @@
     <!-- Mobile-only logo (hidden on desktop via .mobile-logo { display:none }) -->
     <div class="mobile-logo" style="display:none;">
       <img src="__HOST__/logos/ledger-icon-inverse.svg" alt="Ledger">
-      <div class="mobile-playbook-label"><span class="pb-play">PLAY</span><span class="pb-book">BOOK</span></div>
     </div>
-    <div class="mobile-doc-title" style="display:none;">Ground-Up<br>Construction Lending</div>
+    <div class="mobile-doc-title" style="display:none;"><span class="mobile-title-line1">PLAYBOOK</span><br><span class="mobile-title-line2">NEW CONSTRUCTION</span></div>
     <div class="mobile-client-logo" style="display:none;"><img src="__HOST__/logos/lord-abbett.png" alt="Lord Abbett"></div>
     <h1 class="hero-title">PLAY<br><span>BOOK</span></h1>
     <div class="hero-divider"></div>
