@@ -182,6 +182,31 @@ async function associateContactToCompany(contactId, companyId) {
   }
 }
 
+// ─── Step 3b: Get existing company associated with a contact ─────
+async function getContactCompany(contactId) {
+  const assoc = await hubspot(
+    "GET",
+    `/crm/v4/objects/contacts/${contactId}/associations/companies`
+  );
+
+  if (assoc.error || !assoc.results || assoc.results.length === 0) {
+    return null;
+  }
+
+  const companyId = assoc.results[0].toObjectId;
+  const company = await hubspot(
+    "GET",
+    `/crm/v3/objects/companies/${companyId}?properties=name,coverage`
+  );
+
+  if (company.error) {
+    return null;
+  }
+
+  console.log(`Found existing associated company: ${company.id} (${company.properties.name})`);
+  return { company, isNew: false };
+}
+
 // ─── Step 4: Determine Ticket owner ──────────────────────────────
 async function determineTicketOwner(contactResult, companyResult) {
   // Priority 1: Existing contact's owner
@@ -472,6 +497,37 @@ exports.handler = async function (event) {
       };
     }
 
+    // ── Cloudflare Turnstile verification ───────────────────────
+    const turnstileToken = raw["cf-turnstile-response"] || "";
+    if (!turnstileToken) {
+      console.log("Missing Turnstile token — rejecting");
+      return {
+        statusCode: 403,
+        headers,
+        body: JSON.stringify({ error: "Security verification failed. Please refresh the page and try again." }),
+      };
+    }
+
+    const turnstileRes = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        secret: process.env.TURNSTILE_SECRET_KEY,
+        response: turnstileToken,
+        remoteip: (event.headers["x-forwarded-for"] || "").split(",")[0].trim(),
+      }),
+    });
+    const turnstileData = await turnstileRes.json();
+
+    if (!turnstileData.success) {
+      console.log("Turnstile verification failed:", turnstileData);
+      return {
+        statusCode: 403,
+        headers,
+        body: JSON.stringify({ error: "Security verification failed. Please refresh the page and try again." }),
+      };
+    }
+
     // ── Timestamp check (reject if present and under 3 seconds) ─
     const formLoadedAt = raw.form_loaded_at;
     if (!formLoadedAt || isNaN(Number(formLoadedAt)) || (Date.now() - Number(formLoadedAt)) < 3000) {
@@ -548,8 +604,15 @@ exports.handler = async function (event) {
       const contactResult = await findOrCreateContact(formData);
       const contactId = contactResult.contact.id;
 
-      // Step 2: Company
-      const companyResult = await findOrCreateCompany(formData.company);
+      // Step 2: Company — check existing association first, then find/create
+      let companyResult = null;
+      if (!contactResult.isNew) {
+        companyResult = await getContactCompany(contactId);
+      }
+      if (!companyResult) {
+        const companyName = formData.company || `${formData.firstName} ${formData.lastName} LLC`;
+        companyResult = await findOrCreateCompany(companyName);
+      }
       const companyId = companyResult.company ? companyResult.company.id : null;
 
       // Step 3: Associate Contact <-> Company (only if company is NEW)
@@ -582,8 +645,15 @@ exports.handler = async function (event) {
       const contactResult = await findOrCreateContact(formData);
       const contactId = contactResult.contact.id;
 
-      // Step 2: Company
-      const companyResult = await findOrCreateCompany(formData.company);
+      // Step 2: Company — check existing association first, then find/create
+      let companyResult = null;
+      if (!contactResult.isNew) {
+        companyResult = await getContactCompany(contactId);
+      }
+      if (!companyResult) {
+        const companyName = formData.company || `${formData.firstName} ${formData.lastName} LLC`;
+        companyResult = await findOrCreateCompany(companyName);
+      }
       const companyId = companyResult.company ? companyResult.company.id : null;
 
       // Step 3: Associate Contact <-> Company (only if company is NEW)
