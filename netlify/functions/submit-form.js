@@ -262,7 +262,7 @@ async function findOrCreateContact(formData) {
     filterGroups: [{
       filters: [{ propertyName: "email", operator: "EQ", value: formData.email }]
     }],
-    properties: ["email", "firstname", "lastname", "hubspot_owner_id", "hs_google_click_id", "gad_campaignid", "source_website", "form_source", "ad_campaign", "utm_campaign"],
+    properties: ["email", "firstname", "lastname", "hubspot_owner_id", "hs_google_click_id", "gad_campaignid", "source_website", "form_source", "ad_campaign", "utm_campaign", "hs_analytics_source", "hs_analytics_source_data_1"],
   });
 
   if (search.total > 0) {
@@ -288,9 +288,19 @@ async function findOrCreateContact(formData) {
     ...(formData.projectDetails && { project_details: formData.projectDetails }),
   };
 
-  // Set source attribution for Google Ads contacts
+  // Set source attribution
   if (formData.isGoogleAds) {
     contactProps.hs_analytics_source = "PAID_SEARCH";
+  } else {
+    // Fallback for when the HubSpot tracking pixel is blocked (corporate
+    // networks, ad blockers, privacy browsers). When the pixel works, the
+    // hutk association re-attributes to the true session source. This initial
+    // value only sticks when hutk is absent. Without it, HS would otherwise
+    // stamp the contact OFFLINE / INTEGRATION because we create via CRM API.
+    contactProps.hs_analytics_source = "DIRECT_TRAFFIC";
+    if (formData.pageUrl) {
+      contactProps.hs_analytics_source_data_1 = formData.pageUrl;
+    }
   }
 
   const created = await hubspot("POST", "/crm/v3/objects/contacts", {
@@ -306,7 +316,7 @@ async function findOrCreateContact(formData) {
         filterGroups: [{
           filters: [{ propertyName: "email", operator: "EQ", value: formData.email }]
         }],
-        properties: ["email", "firstname", "lastname", "hubspot_owner_id", "hs_google_click_id", "gad_campaignid", "source_website", "form_source", "ad_campaign", "utm_campaign"],
+        properties: ["email", "firstname", "lastname", "hubspot_owner_id", "hs_google_click_id", "gad_campaignid", "source_website", "form_source", "ad_campaign", "utm_campaign", "hs_analytics_source", "hs_analytics_source_data_1"],
       });
       if (retry.total > 0) {
         const existing = retry.results[0];
@@ -345,6 +355,13 @@ async function backfillTracking(existing, formData) {
   }
   if (formData.isGoogleAds) {
     updateProps.hs_analytics_source = "PAID_SEARCH";
+  } else if (existing.properties.hs_analytics_source_data_1 === "INTEGRATION") {
+    // Previously stamped OFFLINE / INTEGRATION because hutk was missing on the
+    // first submit (blocked pixel). Repair it on resubmit.
+    updateProps.hs_analytics_source = "DIRECT_TRAFFIC";
+    if (formData.pageUrl) {
+      updateProps.hs_analytics_source_data_1 = formData.pageUrl;
+    }
   }
   if (formData.projectDetails) {
     updateProps.project_details = formData.projectDetails;
