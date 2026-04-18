@@ -378,16 +378,22 @@ document.addEventListener("click", function(e) {
             <option value="10+ loans/month">10+ loans/month</option>
           </select>
         </div>
-        <div class="form-group">
-          <label>Primary Loan Products of Interest</label>
-          <select name="loan_interest">
-            <option value="" disabled selected>Select a product</option>
-            <option value="Ground-Up Construction">Ground-Up Construction</option>
-            <option value="DSCR">DSCR Rental</option>
-            <option value="Bridge">Bridge</option>
-            <option value="Fix & Flip">Fix & Flip</option>
-            <option value="Multiple / All Products">Multiple / All Products</option>
-          </select>
+        <div class="form-group full">
+          <label>Loan Products of Interest <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--gray-500);font-size:0.85em;">(check all that apply)</span></label>
+          <div style="display:flex;flex-wrap:wrap;gap:0.65rem 1.5rem;margin-top:0.4rem;">
+            <label style="display:inline-flex;align-items:center;gap:0.5rem;font-weight:400;text-transform:none;letter-spacing:0;cursor:pointer;">
+              <input type="checkbox" name="loan_products" value="Ground-Up Construction" style="width:auto;margin:0;"> Ground-Up Construction
+            </label>
+            <label style="display:inline-flex;align-items:center;gap:0.5rem;font-weight:400;text-transform:none;letter-spacing:0;cursor:pointer;">
+              <input type="checkbox" name="loan_products" value="DSCR Rental" style="width:auto;margin:0;"> DSCR Rental
+            </label>
+            <label style="display:inline-flex;align-items:center;gap:0.5rem;font-weight:400;text-transform:none;letter-spacing:0;cursor:pointer;">
+              <input type="checkbox" name="loan_products" value="Bridge" style="width:auto;margin:0;"> Bridge
+            </label>
+            <label style="display:inline-flex;align-items:center;gap:0.5rem;font-weight:400;text-transform:none;letter-spacing:0;cursor:pointer;">
+              <input type="checkbox" name="loan_products" value="Fix & Flip" style="width:auto;margin:0;"> Fix &amp; Flip
+            </label>
+          </div>
         </div>
         <div class="form-group full">
           <label>Anything Else?</label>

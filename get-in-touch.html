@@ -223,9 +223,87 @@ document.addEventListener("click", function(e) {
           <input type="tel" name="phone" placeholder="(555) 555-5555" required>
           <div id="phoneError" style="display:none; color:#dc2626; font-size:0.8rem; margin-top:0.25rem;">Please enter a valid phone number</div>
         </div>
+
+        <div class="form-group">
+          <label>Loan Type <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--gray-500);font-size:0.85em;">(optional)</span></label>
+          <select name="loan_type_interest">
+            <option value="">Select...</option>
+            <option value="Ground-Up Construction">Ground-Up Construction</option>
+            <option value="Fix & Flip / Bridge">Fix &amp; Flip / Bridge</option>
+            <option value="DSCR Rental">DSCR Rental</option>
+            <option value="Spec Home">Spec Home</option>
+            <option value="Portfolio / Multi-Property">Portfolio / Multi-Property</option>
+            <option value="Not Sure">Not sure yet</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Property Type <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--gray-500);font-size:0.85em;">(optional)</span></label>
+          <select name="property_type_interest">
+            <option value="">Select...</option>
+            <option value="Single-Family / SFR">Single-Family / SFR</option>
+            <option value="2-4 Unit">2-4 Unit</option>
+            <option value="5+ Unit / Small Multifamily">5+ Unit / Small Multifamily</option>
+            <option value="Townhome / Condo">Townhome / Condo</option>
+            <option value="Land + Build (Ground-Up)">Land + Build (Ground-Up)</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Property State <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--gray-500);font-size:0.85em;">(optional)</span></label>
+          <select name="property_state">
+            <option value="">Select...</option>
+            <option value="Alabama">Alabama</option><option value="Alaska">Alaska</option>
+            <option value="Arizona">Arizona</option><option value="Arkansas">Arkansas</option>
+            <option value="Colorado">Colorado</option><option value="Connecticut">Connecticut</option>
+            <option value="Delaware">Delaware</option><option value="District of Columbia">District of Columbia</option>
+            <option value="Florida">Florida</option><option value="Georgia">Georgia</option>
+            <option value="Hawaii">Hawaii</option><option value="Illinois">Illinois</option>
+            <option value="Indiana">Indiana</option><option value="Iowa">Iowa</option>
+            <option value="Kansas">Kansas</option><option value="Kentucky">Kentucky</option>
+            <option value="Louisiana">Louisiana</option><option value="Maine">Maine</option>
+            <option value="Maryland">Maryland</option><option value="Massachusetts">Massachusetts</option>
+            <option value="Mississippi">Mississippi</option><option value="Missouri">Missouri</option>
+            <option value="Montana">Montana</option><option value="Nebraska">Nebraska</option>
+            <option value="New Hampshire">New Hampshire</option><option value="New Jersey">New Jersey</option>
+            <option value="New Mexico">New Mexico</option><option value="New York">New York</option>
+            <option value="North Carolina">North Carolina</option><option value="Ohio">Ohio</option>
+            <option value="Oklahoma">Oklahoma</option><option value="Pennsylvania">Pennsylvania</option>
+            <option value="Rhode Island">Rhode Island</option><option value="South Carolina">South Carolina</option>
+            <option value="Tennessee">Tennessee</option><option value="Texas">Texas</option>
+            <option value="Virginia">Virginia</option><option value="Washington">Washington</option>
+            <option value="West Virginia">West Virginia</option><option value="Wisconsin">Wisconsin</option>
+            <option value="Wyoming">Wyoming</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Approximate Loan Amount <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--gray-500);font-size:0.85em;">(optional)</span></label>
+          <select name="loan_amount_range">
+            <option value="">Select...</option>
+            <option value="Under $250K">Under $250K</option>
+            <option value="$250K – $750K">$250K &ndash; $750K</option>
+            <option value="$750K – $2M">$750K &ndash; $2M</option>
+            <option value="$2M – $5M">$2M &ndash; $5M</option>
+            <option value="$5M+">$5M+</option>
+            <option value="Not Sure">Not sure yet</option>
+          </select>
+        </div>
+
         <div class="form-group full">
-          <label>Project Overview</label>
-          <textarea name="project_overview" placeholder="Brief description of your project, timeline, and goals."></textarea>
+          <label>Timeline <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--gray-500);font-size:0.85em;">(optional)</span></label>
+          <select name="deal_timeline">
+            <option value="">Select...</option>
+            <option value="Under contract / closing soon">Under contract or closing soon</option>
+            <option value="Already closed - need refi/bridge">Already closed &mdash; need refi or bridge</option>
+            <option value="Have land/project - ready to build">Have land or project &mdash; ready to build</option>
+            <option value="Actively scouting deals">Actively scouting deals</option>
+            <option value="Just researching">Just researching</option>
+          </select>
+        </div>
+
+        <div class="form-group full">
+          <label>Anything else? <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--gray-500);font-size:0.85em;">(optional)</span></label>
+          <textarea name="project_overview" placeholder="Address, rehab budget, exit plan, anything we should know."></textarea>
         </div>
 
         <!-- Honeypot spam field (hidden from real users) -->

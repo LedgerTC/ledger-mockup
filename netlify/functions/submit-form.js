@@ -377,6 +377,40 @@ async function backfillTracking(existing, formData) {
   }
 }
 
+// ─── Secondary PATCH: new structured form fields ─────────────────
+// These properties may not exist yet in HubSpot (scope-gated creation).
+// Wrapped individually so a single missing property doesn't drop the rest.
+async function patchContactWithFormFields(contactId, formData) {
+  const candidates = {
+    loan_type_interest: formData.loanTypeInterest,
+    property_type_interest: formData.propertyTypeInterest,
+    property_state: formData.propertyState,
+    loan_amount_range: formData.loanAmountRange,
+    deal_timeline: formData.dealTimeline,
+  };
+  const props = Object.fromEntries(
+    Object.entries(candidates).filter(([_, v]) => v && String(v).trim() !== "")
+  );
+  if (Object.keys(props).length === 0) return;
+
+  const result = await hubspot("PATCH", `/crm/v3/objects/contacts/${contactId}`, { properties: props });
+  if (result.error) {
+    // If bulk PATCH fails (likely property doesn't exist), retry one at a time
+    // so the remaining known-good properties still land.
+    console.warn(`Bulk form-field PATCH failed on contact ${contactId}; retrying per-property`);
+    for (const [name, value] of Object.entries(props)) {
+      const one = await hubspot("PATCH", `/crm/v3/objects/contacts/${contactId}`, {
+        properties: { [name]: value },
+      });
+      if (one.error) {
+        console.warn(`Skipped form-field ${name} on contact ${contactId} (likely property not yet created in HubSpot)`);
+      }
+    }
+  } else {
+    console.log(`Patched form fields on contact ${contactId}: ${Object.keys(props).join(", ")}`);
+  }
+}
+
 // ─── Step 2: Company lookup / creation ────────────────────────────
 function activityToConnectValue(formData) {
   return formData.isGoogleAds ? "Ads" : "Website";
@@ -634,6 +668,11 @@ function buildTicketSummary(formData) {
   lines.push("");
   lines.push("━━━ Inquiry Details ━━━");
 
+  if (formData.loanTypeInterest) lines.push(`Loan Type of Interest: ${formData.loanTypeInterest}`);
+  if (formData.propertyTypeInterest) lines.push(`Property Type: ${formData.propertyTypeInterest}`);
+  if (formData.propertyState) lines.push(`Subject Property State: ${formData.propertyState}`);
+  if (formData.loanAmountRange) lines.push(`Loan Amount Range: ${formData.loanAmountRange}`);
+  if (formData.dealTimeline) lines.push(`Deal Timeline: ${formData.dealTimeline}`);
   if (formData.loanType) lines.push(`Loan Type: ${formData.loanType}`);
   if (formData.loanAmount) lines.push(`Loan Amount: ${formData.loanAmount}`);
   if (formData.experience) lines.push(`Experience: ${formData.experience}`);
@@ -750,6 +789,11 @@ exports.handler = async function (event) {
       experience: raw.experience || "",
       propertyAddress: raw.property_address || "",
       projectOverview: raw.project_overview || raw.details || "",
+      loanTypeInterest: raw.loan_type_interest || "",
+      propertyTypeInterest: raw.property_type_interest || "",
+      propertyState: raw.property_state || "",
+      loanAmountRange: raw.loan_amount_range || "",
+      dealTimeline: raw.deal_timeline || "",
       website: raw.website || "",
       pageUrl: raw.page_url || "",
       gclid: raw.gclid || "",
@@ -902,7 +946,9 @@ exports.handler = async function (event) {
       // Map broker-specific fields
       formData.states = raw.states || "";
       formData.monthlyVolume = raw.monthly_volume || "";
-      formData.loanProducts = raw.loan_products || "";
+      // loan_products is a multi-select (checkboxes). Collect all values —
+      // Object.fromEntries() above only keeps the last one, so pull from params directly.
+      formData.loanProducts = params.getAll("loan_products").filter(Boolean).join(", ");
       formData.notes = raw.notes || "";
 
       // Step 1: Contact
@@ -961,6 +1007,9 @@ exports.handler = async function (event) {
 
       // Re-assert tracking properties after hutk association (hutk can overwrite hs_analytics_source)
       await ensureTrackingAfterHutk(contactId, formData);
+
+      // Write new structured form fields (degrades gracefully if properties don't yet exist)
+      await patchContactWithFormFields(contactId, formData);
 
       // Step 2: Company — check existing association first, then find/create
       let companyResult = null;
