@@ -428,8 +428,8 @@ async function backfillTracking(existing, formData) {
 // Wrapped individually so a single missing property doesn't drop the rest.
 async function patchContactWithFormFields(contactId, formData) {
   const candidates = {
-    loan_type_interest: formData.loanTypeInterest,
-    property_type_interest: formData.propertyTypeInterest,
+    loan_type_of_interest: formData.loanTypeInterest,
+    property_type_of_interest: formData.propertyTypeInterest,
     property_state: formData.propertyState,
     loan_amount_range: formData.loanAmountRange,
     deal_timeline: formData.dealTimeline,
