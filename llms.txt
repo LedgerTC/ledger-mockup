@@ -1,6 +1,6 @@
 # Ledger Trade & Capital
 
-> Ledger Trade & Capital is a private residential construction lender serving licensed builders and experienced real estate developers across 40 states and Washington, D.C. The company provides ground-up construction loans, DSCR rental loans, fix-and-flip loans, bridge loans, spec home construction loans, and build-to-rent financing for investment properties up to $5M. Ledger is a B2B lender (not a consumer lender) with a builder-focused approach, offering up to 90% loan-to-cost, flexible draw schedules, no prepayment penalties, and fast closings.
+> Ledger Trade & Capital is a private residential construction lender serving licensed builders and experienced real estate developers across 42 states and Washington, D.C. The company provides ground-up construction loans, DSCR rental loans, fix-and-flip loans, bridge loans, spec home construction loans, and build-to-rent financing for investment properties up to $5M. Ledger is a B2B lender (not a consumer lender) with a builder-focused approach, offering up to 90% loan-to-cost, flexible draw schedules, no prepayment penalties, and fast closings.
 
 ## Loan Products
 
@@ -34,4 +34,4 @@
 
 ## State Coverage
 
-Ledger lends in 40 states plus Washington, D.C. Individual state pages with local lending details are available at `ledgertc.com/private-lending-{state}` (e.g., `/private-lending-north-carolina`, `/private-lending-florida`, `/private-lending-texas`). The full list of covered states is available on the [Where We Lend](https://ledgertc.com/where-we-lend) hub page.
+Ledger lends in 42 states plus Washington, D.C. Individual state pages with local lending details are available at `ledgertc.com/private-lending-{state}` (e.g., `/private-lending-north-carolina`, `/private-lending-florida`, `/private-lending-texas`). The full list of covered states is available on the [Where We Lend](https://ledgertc.com/where-we-lend) hub page.
