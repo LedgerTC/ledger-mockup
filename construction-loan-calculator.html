@@ -682,7 +682,7 @@ document.addEventListener("click", function(e) {
     <div id="rehabArvSection">
     <div class="field-group" id="rehabGroup">
       <label id="label-rehab">Renovation / Construction Budget</label>
-      <p class="field-hint" id="hint-rehab">Total budgeted construction or rehab cost (we'll buffer 10% automatically).</p>
+      <p class="field-hint" id="hint-rehab">Total budgeted construction or rehab cost (we'll buffer 5% automatically).</p>
       <div class="currency-wrap">
         <input type="text" id="rehabBudget" placeholder="75,000" oninput="formatCurrency(this)">
       </div>
@@ -1102,7 +1102,7 @@ function updateProjectTypeUI() {
     rehabArvSection.style.display = 'block';
     if (projectType === 'Ground Up') {
       rehabLabel.textContent = 'Construction Budget';
-      rehabHint.textContent = 'Total budgeted construction cost (we\'ll buffer 10% automatically).';
+      rehabHint.textContent = 'Total budgeted construction cost (we\'ll buffer 5% automatically).';
       arvLabel.textContent = 'Completed Value';
       // GUC: land is cheap, construction is the big number
       document.getElementById('purchasePrice').placeholder = '150,000';
@@ -1111,7 +1111,7 @@ function updateProjectTypeUI() {
       document.getElementById('arv').placeholder = '625,000';
     } else {
       rehabLabel.textContent = 'Renovation Budget';
-      rehabHint.textContent = 'Total budgeted rehab cost (we\'ll buffer 10% automatically).';
+      rehabHint.textContent = 'Total budgeted rehab cost (we\'ll buffer 5% automatically).';
       arvLabel.textContent = 'After-Repair Value';
       // Fix and Flip: property is the big number, rehab is smaller
       document.getElementById('purchasePrice').placeholder = '350,000';
@@ -1424,8 +1424,8 @@ function calculateRTL() {
     program = 'FnF - Heavy'; // Downgrade: Condo GUC not permitted
   }
 
-  // Buffer construction cost by 10%
-  const bufferedCost = Math.round(rehabBudget * 1.10);
+  // Buffer construction cost by 5% (used only for LTC sizing; displayed holdback is the entered budget or less)
+  const bufferedCost = Math.round(rehabBudget * 1.05);
 
   const lev = lookupLeverage(experience, program, dealType);
 
@@ -1502,41 +1502,23 @@ function calculateRTL() {
       maxLTAIV = 0.70;
     }
 
-    // Holdback = 100% of buffered construction cost
-    holdback = bufferedCost;
+    // Targets: Day 1 at full LTAIV, holdback at the entered budget
+    const day1Max = Math.round(baseVal * maxLTAIV);
+    const holdbackTarget = rehabBudget;
+    const tlaTarget = day1Max + holdbackTarget;
 
-    // Day 1 from LTAIV
-    day1 = Math.round(baseVal * maxLTAIV);
+    // Caps: buffered cost is used in the LTC denominator only
+    const maxTLAFromLTC = Math.round((baseVal + bufferedCost) * lev.ltc);
+    const maxTLAFromARV = Math.round(arv * lev.ltv);
+    tla = Math.min(tlaTarget, maxTLAFromLTC, maxTLAFromARV);
 
-    // Unconstrained TLA
-    tla = day1 + holdback;
-
-    // LTARV cap — if TLA exceeds max LTARV, reduce day1 first
-    const maxLTV = lev.ltv;
-    const maxTLAFromARV = Math.round(arv * maxLTV);
-    if (tla > maxTLAFromARV) {
-      const excess = tla - maxTLAFromARV;
-      day1 = Math.max(0, day1 - excess);
-      tla = day1 + holdback;
-      // If still over (day1 already at 0), reduce holdback
-      if (tla > maxTLAFromARV) {
-        holdback = Math.max(0, maxTLAFromARV - day1);
-        tla = day1 + holdback;
-      }
-    }
-
-    // LTC cap — same approach: reduce day1 first
-    const maxLTC = lev.ltc;
-    const totalCostLocal = baseVal + bufferedCost;
-    const maxTLAFromLTC = Math.round(totalCostLocal * maxLTC);
-    if (tla > maxTLAFromLTC) {
-      const excess = tla - maxTLAFromLTC;
-      day1 = Math.max(0, day1 - excess);
-      tla = day1 + holdback;
-      if (tla > maxTLAFromLTC) {
-        holdback = Math.max(0, maxTLAFromLTC - day1);
-        tla = day1 + holdback;
-      }
+    if (tla >= tlaTarget) {
+      day1 = day1Max;
+      holdback = holdbackTarget;
+    } else {
+      // Cap binds: keep Day 1 whole, trim holdback first; only trim Day 1 if holdback hits 0
+      holdback = Math.max(0, tla - day1Max);
+      day1 = tla - holdback;
     }
   }
 
@@ -1625,7 +1607,7 @@ function calculateRTL() {
     document.getElementById('res-tla-detail').textContent = (ltvRatio * 100).toFixed(1) + '% LTV';
   } else {
     document.getElementById('row-holdback-breakdown').style.display = 'flex';
-    const holdbackPct = bufferedCost > 0 ? Math.round(holdback / bufferedCost * 100) : 0;
+    const holdbackPct = rehabBudget > 0 ? Math.round(holdback / rehabBudget * 100) : 0;
     document.getElementById('res-holdback').textContent = '$' + holdback.toLocaleString();
     document.getElementById('res-holdback-label').textContent = 'Construction Holdback (' + holdbackPct + '% of rehab)';
     document.getElementById('res-tla-detail').textContent = (ltcRatio * 100).toFixed(1) + '% LTC \u00b7 ' + (ltvRatio * 100).toFixed(1) + '% LTARV';
