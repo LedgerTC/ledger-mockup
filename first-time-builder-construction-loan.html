@@ -43,21 +43,10 @@ if (window.location.hostname === 'ledgertc.com') {
       'analytics_storage': 'granted'
     });
     if (window.location.hostname === 'ledgertc.com') {
-      gtag('config', 'G-P2E61PRS60');
-      gtag('config', 'AW-17993082803');
+      gtag('config', 'G-P2E61PRS60', { transport_url: 'https://tag.ledgertc.com' });
+      gtag('config', 'AW-17993082803', { transport_url: 'https://tag.ledgertc.com' });
 }
   </script>
-<script>
-/* sGTM companion: routes AW remarketing pixel through tag.ledgertc.com
-   for ITP-resistant first-party cookies. Additive only -- existing
-   gtag tracking remains the source of truth for conversions/GA4. */
-if (window.location.hostname === 'ledgertc.com') {
-  gtag('event', 'page_view', {
-    send_to: 'AW-17993082803',
-    transport_url: 'https://tag.ledgertc.com'
-  });
-}
-</script>
 <script>
 /* Click-to-call tracking: fires GA4 event on tel: link clicks */
 document.addEventListener("click", function(e) {
